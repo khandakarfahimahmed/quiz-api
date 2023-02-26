@@ -53,6 +53,9 @@
                     <button type="button" onclick="f7(this)">
                         <i class="fa-solid fa-align-right"></i>
                     </button>
+                    <button id="insertOrderedList" onclick="f70(this)">
+                        <i class="fa-solid fa-list-ol"></i>
+                    </button>
                 </div>
                 <div class="fourth box">
                     <button type="button" onclick="f8(this)">aA</button>
@@ -77,17 +80,29 @@
     </form>
 
 
-    <%  for (let i = 0; i < array.length; i++) { %>
-        <h1><%= title[i] %></h1>
-        <p><%= question[i] %></p></p>
-        
-        <%  };%>
-    
     
 
-
-
-
+    <% for (let i = 0; i<title.length; i++) { %>
+        <div class="ques dotted">
+            <form action="/createquiz" method="post">
+                <u><h5><i class="fa-solid fa-bars" style="padding-right: 20px;"></i><%= question[i] %></h5></u>
+                <!-- <u><h7><i class="fa-solid fa-bars" style="padding-right: 20px; padding-left: 25px; padding-top: 30px;"></i><%= question[i] %></h7></u> -->
+                <% if (ans1[i]) {%>
+                    <u><h7><i class="fa-solid fa-bars" style="padding-right: 20px; padding-left: 25px; padding-top: 30px;"></i><%= ans1[i] %></h7></u>
+                <%  }  %> <br>
+                <u><i class="fa-solid fa-bars" style="padding-right: 10px; padding-left: 25px; padding-top: 20px;"></i><input type="text" placeholder="add answer" name="newAns"></u>
+                
+                <button type="button"  name="newAns" style="margin-top: 10px; margin-left: 20px;" class="btn btn-outline-secondary">+ add reply</button>
+            </form>
+        </div>
+    <% } %>
+    <form action="/createquiz" method="post">
+    <div class="ques dotted">
+        <u><i class="fa-solid fa-bars" style="padding-right: 10px;"></i><input type="text" placeholder="enter question" name="ques"></u><br>
+        <u><i class="fa-solid fa-bars" style="padding-right: 10px; padding-left: 20px; padding-top: 20px;"></i><input type="text" placeholder="add answer" name="newAns"></u>
+        <button type="button" style="margin-top: 10px; margin-left: 20px;" class="btn btn-outline-secondary">+ add reply</button>
+    </div>
+    </form>
 
 
     <script>
@@ -141,6 +156,10 @@
 
         function f7(e) {
             textarea.style.textAlign = "right";
+            
+        }
+        function f70(e) {
+            
         }
 
         function f8(e) {

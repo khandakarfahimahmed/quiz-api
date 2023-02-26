@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/c1c074fba2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Create Quiz</title>
+</head>
+<body>
+
+    
+    <% for (let i = 0; i<title.length; i++) { %>
+        <div class="ques1 ">
+            
+            <h5><%= i+1 %>. <%= question[i] %></h5>
+            
+            
+            <% if (ans1[i]) {%>
+                <input type="checkbox" id="ans1" name="ans1">
+                <label for="ans1"><h7 style="padding-left: 10px;"><%= ans1[i] %></h7></label><br>
+                
+                
+            <%  }  %> <br>
+            <% if (ans2[i]) {%>
+                <input type="checkbox" id="ans2" name="ans2" >
+                <label for="ans2"><h7 style="padding-left: 10px;"><%= ans1[i] %></h7></label><br>
+            <%  }  %> <br>
+            <% if (ans3[i]) {%>
+                <input type="checkbox" id="ans3" name="ans3" >
+                <label for="ans2"><h7 style="padding-left: 10px;"><%= ans1[i] %></h7></label><br>
+            <%  }  %> <br>
+            
+        </div>
+    <% } %>
+
+
+</body>
+</html>

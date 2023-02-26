@@ -33,11 +33,14 @@ db.connect((err) => {
 });
 
 
-
+///////////Create Quiz//////////////
 app.route("/createquiz")
-.get(function (req, res) {
+.get(function(req, res){
   let title = [];
   let question = [];
+  let ans1 = [];
+  let ans2 = [];
+  let ans3 = [];
   db.query(
     `SELECT * FROM quiz `,
     (err, result) => {
@@ -51,19 +54,29 @@ app.route("/createquiz")
         result.forEach(items => {
           question.push(items.question);
         });
-        res.render('createquiz',{title, question});
+        result.forEach(items => {
+          ans1.push(items.answer1);
+        });
+        result.forEach(items => {
+          ans2.push(items.answer2);
+        });
+        result.forEach(items => {
+          ans3.push(items.answer3);
+        });
+        res.render('createquiz',{title, question, ans1, ans2, ans3});
+        
       }
+      
     }
   )
-  
-  
-
 })
 .post(function (req, res){
   let title = req.body.quizTitle;
   let text = req.body.question;
-  console.log(title);
-  console.log(text);
+  let ques = req.body.ques;
+  let ans = req.body.newAns;
+  console.log(ques);
+  console.log(ans);
   db.query(
     `INSERT INTO quiz (title, question) VALUES (?,?)`,
     [title, text],
@@ -75,7 +88,42 @@ app.route("/createquiz")
 });
 
 
+//////////Quiz section///////////
 
+app.route("/quizes")
+.get(function(req, res){
+  let title = [];
+  let question = [];
+  let ans1 = [];
+  let ans2 = [];
+  let ans3 = [];
+  db.query(
+    `SELECT * FROM quiz `,
+    (err, result) => {
+      if (err) {
+        res.send({ err: err });
+      } 
+      else{
+        result.forEach(items => {
+          title.push(items.title);
+        });
+        result.forEach(items => {
+          question.push(items.question);
+        });
+        result.forEach(items => {
+          ans1.push(items.answer1);
+        });
+        result.forEach(items => {
+          ans2.push(items.answer2);
+        });
+        result.forEach(items => {
+          ans3.push(items.answer3);
+        });
+        res.render('quiz',{title, question, ans1, ans2, ans3});
+      }
+    }
+  )
+});
 
 
 
