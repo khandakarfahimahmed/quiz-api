@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/c1c074fba2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Create Quiz</title>
+</head>
+<body>
+    
+    <!-- top -->
+    <div class="container">
+        
+        <p style="font-family:verdana"><i class="fa fa-arrow-left arrow" aria-hidden="true"></i><b>create new quiz</b></p>
+        <div class="button1">
+            <button type="button" data-cmd="justifyCenter" class="btn btn-light text-right" style="float: right;">Light</button>
+            <button type="button" data-cmd="justifyCenter" class="btn btn-primary" style="float: right">Primary</button>
+        </div>
+            
+    </div>
+    <form action="/createquiz" method="post">
+        <div class="form-group" style="margin-left: 700px;" >
+          <label >Title</label>
+          <input type="text" name="quizTitle" class="form-control"  style="width: 600px;" placeholder="Enter Title">
+        </div>
+    <section>
+        <div class="row">
+            <div class="col">
+                <div class="first box">
+                    <input id="font-size" type="number" value="16" min="1" max="100" onchange="f1(this)">
+                </div>
+                <div class="second box">
+                    <button type="button" onclick="f2(this)">
+                        <i class="fa-solid fa-bold"></i>
+                    </button>
+                    <button type="button" onclick="f3(this)">
+                        <i class="fa-solid fa-italic"></i>
+                    </button>
+                    <button type="button" onclick="f4(this)">
+                        <i class="fa-solid fa-underline"></i>
+                    </button>
+                </div>
+                <div class="third box">
+                    <button type="button" onclick="f5(this)">
+                        <i class="fa-solid fa-align-left"></i>
+                    </button>
+                    <button type="button" onclick="f6(this)">
+                        <i class="fa-solid fa-align-center"></i>
+                    </button>
+                    <button type="button" onclick="f7(this)">
+                        <i class="fa-solid fa-align-right"></i>
+                    </button>
+                </div>
+                <div class="fourth box">
+                    <button type="button" onclick="f8(this)">aA</button>
+                    <button type="button" onclick="f9()">
+                        <i class="fa-solid fa-text-slash"></i>
+                    </button>
+                    <input type="color" onchange="f10(this)">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <textarea id="textarea1" name="question" type="text" placeholder="Your text here " style="resize: none;"></textarea>
+            </div>
+        </div>
+    </section>
+    
+    <h5 style=" padding-top: 50px; padding-left: 10px;">Question</h5>
+    <p style=" padding-top: 10px; padding-left: 10px;">Learn more about the <a href="">quiz</a></p>
+        <button style="margin-top: -80px; margin-left: 1200px;" type="submit" value="Submit"  class="btn btn-primary btn-sm">+ add question</button>
+    </form>
+
+
+    <%  for (let i = 0; i < array.length; i++) { %>
+        <h1><%= title[i] %></h1>
+        <p><%= question[i] %></p></p>
+        
+        <%  };%>
+    
+    
+
+
+
+
+
+
+    <script>
+        const textarea = document.getElementById("textarea1");
+
+        function f1(e) {
+            let value = e.value;
+            textarea.style.fontSize = value + "px";
+        }
+
+        function f2(e) {
+            if (textarea.style.fontWeight == "bold") {
+                textarea.style.fontWeight = "normal";
+                e.classList.remove("active");
+            }
+            else {
+                textarea.style.fontWeight = "bold";
+                e.classList.add("active");
+            }
+        }
+
+        function f3(e) {
+            if (textarea.style.fontStyle == "italic") {
+                textarea.style.fontStyle = "normal";
+                e.classList.remove("active");
+            }
+            else {
+                textarea.style.fontStyle = "italic";
+                e.classList.add("active");
+            }
+        }
+
+        function f4(e) {
+            if (textarea.style.textDecoration == "underline") {
+                textarea.style.textDecoration = "none";
+                e.classList.remove("active");
+            }
+            else {
+                textarea.style.textDecoration = "underline";
+                e.classList.add("active");
+            }
+        }
+
+        function f5(e) {
+            textarea.style.textAlign = "left";
+        }
+
+        function f6(e) {
+            textarea.style.textAlign = "center";
+        }
+
+        function f7(e) {
+            textarea.style.textAlign = "right";
+        }
+
+        function f8(e) {
+            if (textarea.style.textTransform == "uppercase") {
+                textarea.style.textTransform = "none";
+                e.classList.remove("active");
+            }
+            else {
+                textarea.style.textTransform = "uppercase";
+                e.classList.add("active");
+            }
+        }
+
+        function f9() {
+            textarea.style.fontWeight = "normal";
+            textarea.style.textAlign = "left";
+            textarea.style.fontStyle = "normal";
+            textarea.style.textTransform = "capitalize";
+            textarea.value = "";
+        }
+
+        function f10(e) {
+            let value = e.value;
+            textarea.style.color = value;
+        }
+
+        window.addEventListener('load', () => {
+            textarea.value = "";
+        });
+    </script>
+
+    
+
+</body>
+</html>
